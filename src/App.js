@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+import Search from "./components/Search";
+import Data from "./components/Data";
+
+const Div = styled.div`
+  height: 300px;
+  background-image: url("./images/pattern-bg.png");
+  background-size: cover;
+  background-position: right 43.5% top 0%;
+  background-repeat: no-repeat;
+`;
+
+const Container = styled.div`
+  padding: 0 1.05rem;
+  /* display: flex;
+  flex-direction: column; */
+`;
+
+const Title = styled.h1`
+  color: #fff;
+  padding: 1.44rem 0;
+  font-weight: 500;
+  font-size: 1.44rem;
+  text-align: center;
+`;
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Div>
+      <Container>
+        <Title>IP Address Tracker</Title>
+        <Search />
+        <Data />
+
+        {/* this could be the map */}
+        <div></div>
+      </Container>
+    </Div>
   );
 }
 
