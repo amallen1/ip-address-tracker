@@ -7,21 +7,17 @@ const Card = styled.div`
   padding: 1.44em 1.33em 0em;
   text-align: center;
   border: 1px solid black;
+  display: flex;
+  flex-direction: column;
 
-  h3 {
-    font-weight: 500;
-    color: var(--very-dark-gray);
-    font-size: 1.11rem;
-    letter-spacing: -0.18px;
-    line-height: 24px;
-  }
-
-  @media (min-width: 750px) {
+  @media (min-width: 777px) {
     text-align: left;
-    display: flex;
     margin: 0 auto;
     height: 161px;
-    padding: 2.05rem 1.777rem;
+    //padding: 2.05rem 0 0;
+    padding: 2.05rem 1.777rem 0;
+
+    flex-direction: row;
   }
 
   @media (min-width: 1024px) {
@@ -40,7 +36,9 @@ const Label = styled.label`
 
   @media (min-width: 750px) {
     font-size: 0.667rem;
-    margin-bottom: 0.772rem;
+    margin-bottom: 0.722rem;
+    line-height: 14px;
+    letter-spacing: 1.75px;
   }
 `;
 
@@ -48,9 +46,46 @@ const Info = styled.div`
   margin-bottom: 1.33rem;
   display: flex;
   flex-direction: column;
+  position: relative;
+  column-gap: 1.777rem;
+  flex-wrap: wrap;
+
+  @media (min-width: 777px) {
+    margin: 0 1.777rem;
+    max-width: 213px;
+    /* flex: 1; */
+
+    :first-child {
+      margin-left: 0;
+    }
+
+    ::after {
+      content: "";
+      position: absolute;
+      right: -1.77rem;
+      height: 75px;
+      background-color: rgba(0, 0, 0, 0.15);
+      width: 1px;
+      margin-left: 1.777rem;
+    }
+
+    :last-child::after {
+      display: none;
+    }
+  }
+`;
+
+const Result = styled.h3`
+  font-weight: 500;
+  color: var(--very-dark-gray);
+  font-size: 1.11rem;
+  letter-spacing: -0.18px;
+  line-height: 24px;
 
   @media (min-width: 750px) {
-    margin: 0 1.777rem;
+    font-size: 1.444rem;
+    line-height: 30px;
+    letter-spacing: -0.23px;
   }
 `;
 
@@ -67,33 +102,41 @@ const Data = ({ dataObj, loading }) => {
       <Card>
         <Info>
           <Label>ip address</Label>
-          {loading ? <h3>192.212.174.101</h3> : <h3>{dataObj.ip}</h3>}
+          {loading ? (
+            <Result>192.212.174.101</Result>
+          ) : (
+            <Result>{dataObj.ip}</Result>
+          )}
         </Info>
 
         <Info>
           <Label>location</Label>
           {loading ? (
-            <h3>Brooklyn, NY 10001</h3>
+            <Result>Brooklyn, NY 10001</Result>
           ) : (
-            <h3>
+            <Result>
               {dataObj.location.city}, {dataObj.location.region},{" "}
               {dataObj.location.postalCode}
-            </h3>
+            </Result>
           )}
         </Info>
 
         <Info>
           <Label>timezone</Label>
           {loading ? (
-            <h3>UTC -05:00</h3>
+            <Result>UTC -05:00</Result>
           ) : (
-            <h3>UTC {dataObj.location.timezone}</h3>
+            <Result>UTC {dataObj.location.timezone}</Result>
           )}
         </Info>
 
         <Info>
           <Label>isp</Label>
-          {loading ? <h3>SpaceX Starlink</h3> : <h3>{dataObj.isp}</h3>}
+          {loading ? (
+            <Result>SpaceX Starlink</Result>
+          ) : (
+            <Result>{dataObj.isp}</Result>
+          )}
         </Info>
       </Card>
     </div>

@@ -19,6 +19,11 @@ const Input = styled.input`
   :focus {
     outline: none;
   }
+
+  ::placeholder{
+    font-size: .555rem;
+    //use method from sunnyside code that makes this grow
+  }
 `;
 
 const SearchButton = styled.button`
