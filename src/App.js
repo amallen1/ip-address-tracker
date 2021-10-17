@@ -12,8 +12,6 @@ const Div = styled.div`
 
 const Container = styled.div`
   padding: 0 1.05rem;
-  /* display: flex;
-  flex-direction: column; */
 `;
 
 const Title = styled.h1`
@@ -22,8 +20,11 @@ const Title = styled.h1`
   font-weight: 500;
   font-size: 1.44rem;
   text-align: center;
-`;
 
+  @media (min-width: 768px) {
+    font-size: 1.778rem;
+  }
+`;
 
 function App() {
   return (
@@ -31,7 +32,6 @@ function App() {
       <Container>
         <Title>IP Address Tracker</Title>
         <Search />
-        
 
         {/* this could be the map */}
         <div></div>

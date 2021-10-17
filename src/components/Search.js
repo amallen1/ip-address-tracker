@@ -49,7 +49,7 @@ const Search = () => {
     const apiKey = "at_T0MSWNTC1YEN9Qr5akAp1Bj6L7n1M";
     axios
       .get(
-        `https://geo.ipify.org/api/v2/country?apiKey=${apiKey}&ipAddress=${ipAddress}`
+        `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}`
       )
       .then((response) => {
         setData(response.data);
@@ -60,7 +60,6 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(ipAddress);
     fetchData();
   };
 
@@ -78,7 +77,7 @@ const Search = () => {
         </SearchButton>
       </Form>
 
-      <Data ip={ipAddress} dataObj={data} loading={isLoading} />
+      <Data dataObj={data} loading={isLoading} />
     </div>
   );
 };
