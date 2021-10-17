@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Search from "./components/Search";
-import Data from "./components/Data";
 
 const Div = styled.div`
   height: 300px;
@@ -8,6 +7,7 @@ const Div = styled.div`
   background-size: cover;
   background-position: right 43.5% top 0%;
   background-repeat: no-repeat;
+  position: relative;
 `;
 
 const Container = styled.div`
@@ -21,9 +21,17 @@ const Title = styled.h1`
   font-size: 1.44rem;
   text-align: center;
 
-  @media (min-width: 768px) {
+  @media (min-width: 780px) {
     font-size: 1.778rem;
   }
+`;
+
+const Map = styled.div`
+  position: absolute;
+  top: 0px;
+  height: 100px;
+  width: 100px;
+  background-color: yellow;
 `;
 
 function App() {
@@ -32,10 +40,9 @@ function App() {
       <Container>
         <Title>IP Address Tracker</Title>
         <Search />
-
-        {/* this could be the map */}
-        <div></div>
       </Container>
+
+      {/* <Map></Map> */}
     </Div>
   );
 }

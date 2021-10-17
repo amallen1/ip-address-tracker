@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const Card = styled.div`
@@ -6,17 +6,16 @@ const Card = styled.div`
   border-radius: 15px;
   padding: 1.44em 1.33em 0em;
   text-align: center;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 777px) {
+  box-shadow: 0px 50px 50px -25px rgba(0, 0, 0, 0.0984);
+
+  @media (min-width: 850px) {
     text-align: left;
     margin: 0 auto;
-    height: 161px;
-    //padding: 2.05rem 0 0;
-    padding: 2.05rem 1.777rem 0;
 
+    padding: 2.05rem 1.777rem;
     flex-direction: row;
   }
 
@@ -48,12 +47,10 @@ const Info = styled.div`
   flex-direction: column;
   position: relative;
   column-gap: 1.777rem;
-  flex-wrap: wrap;
 
-  @media (min-width: 777px) {
+  @media (min-width: 850px) {
     margin: 0 1.777rem;
-    max-width: 213px;
-    /* flex: 1; */
+    width: 213px;
 
     :first-child {
       margin-left: 0;
@@ -66,7 +63,6 @@ const Info = styled.div`
       height: 75px;
       background-color: rgba(0, 0, 0, 0.15);
       width: 1px;
-      margin-left: 1.777rem;
     }
 
     :last-child::after {
@@ -87,15 +83,20 @@ const Result = styled.h3`
     line-height: 30px;
     letter-spacing: -0.23px;
   }
+
+  @media (min-width: 850px) {
+    ${({ hasWidth }) =>
+      hasWidth &&
+      `max-width: 190px;
+  `}
+  }
 `;
 
 const Data = ({ dataObj, loading }) => {
-  useEffect(() => {
-    console.log("checking for data");
-    console.log(dataObj);
-    console.log("checking for loading");
-    console.log(loading);
-  }, [loading]);
+  console.log("checking for data");
+  console.log(dataObj);
+  console.log("checking for loading status");
+  console.log(loading);
 
   return (
     <div>
@@ -115,7 +116,7 @@ const Data = ({ dataObj, loading }) => {
             <Result>Brooklyn, NY 10001</Result>
           ) : (
             <Result>
-              {dataObj.location.city}, {dataObj.location.region},{" "}
+              {dataObj.location.city}, {dataObj.location.region},
               {dataObj.location.postalCode}
             </Result>
           )}
@@ -133,9 +134,9 @@ const Data = ({ dataObj, loading }) => {
         <Info>
           <Label>isp</Label>
           {loading ? (
-            <Result>SpaceX Starlink</Result>
+            <Result hasWidth="true">SpaceX Starlink</Result>
           ) : (
-            <Result>{dataObj.isp}</Result>
+            <Result hasWidth="true">{dataObj.isp}</Result>
           )}
         </Info>
       </Card>

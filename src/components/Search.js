@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Data from "./Data";
 import axios from "axios";
@@ -10,8 +10,9 @@ const Form = styled.form`
 `;
 
 const Input = styled.input`
-  padding: 1rem 1rem 1.0555rem;
+  padding: 1rem 1rem 1rem;
   font-size: inherit;
+  font-family: inherit;
   border-radius: 15px 0px 0px 15px;
   border: none;
   width: 90%;
@@ -20,9 +21,14 @@ const Input = styled.input`
     outline: none;
   }
 
-  ::placeholder{
-    font-size: .555rem;
-    //use method from sunnyside code that makes this grow
+  ::placeholder {
+    font-size: 0.677rem;
+  }
+
+  @media (min-width: 780px) {
+    ::placeholder {
+      font-size: 1rem;
+    }
   }
 `;
 
