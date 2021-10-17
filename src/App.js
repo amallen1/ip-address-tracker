@@ -31,7 +31,7 @@ function App() {
       <Container>
         <Title>IP Address Tracker</Title>
         <Search />
-        <Data />
+        
 
         {/* this could be the map */}
         <div></div>
