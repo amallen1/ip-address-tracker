@@ -25,7 +25,7 @@ const Input = styled.input`
     font-size: 0.677rem;
   }
 
-  @media (min-width: 780px) {
+  @media (min-width: 750px) {
     ::placeholder {
       font-size: 1rem;
     }
@@ -69,9 +69,42 @@ const Search = () => {
       .catch((error) => console.log(error));
   };
 
+  const validate = () => {
+    // /[0-9]{1-3}\.[0-9]{1-3}\.[0-9]{1-3}\.[0-9]{1-3}/
+    //71.201.134.49
+
+    //valid from 0 - 99
+    //[0-9][0-9]
+
+    //valid from 100 - 199
+    //1[0-9][0-9]
+
+    //valid for 200-249
+    //2[0-4][0-9]
+
+    //valid for 250 to 255
+    //25[0-5]
+
+    //final pattern
+    //([0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]?)\.
+
+    let ip = "0.0.0.0";
+    let regularExp = new RegExp(
+      "([0-9]|[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]?)\.([0-9]|[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]?)\.([0-9]|[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]?)\.([0-9]|[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]?)"
+    );
+    if (regularExp.test(ip)) {
+      console.log("Valid");
+    } else {
+      console.log("Invalid");
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetchData();
+    validate();
+
+    //validate IP address before fetching the data
+    //fetchData();
   };
 
   return (

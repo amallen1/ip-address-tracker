@@ -14,6 +14,11 @@ export const GlobalStyles = styled.createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html,
+  body {
+    height: 100vh;
+  }
+
   body {
     font-family: "Rubik", sans-serif;
   }

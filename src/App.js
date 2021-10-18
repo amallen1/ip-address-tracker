@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import Search from "./components/Search";
 
-const Div = styled.div`
+const Header = styled.div`
   height: 300px;
   background-image: url("./images/pattern-bg.png");
   background-size: cover;
   background-position: right 43.5% top 0%;
   background-repeat: no-repeat;
-  position: relative;
 `;
 
 const Container = styled.div`
@@ -21,29 +20,36 @@ const Title = styled.h1`
   font-size: 1.44rem;
   text-align: center;
 
-  @media (min-width: 780px) {
+  @media (min-width: 750px) {
     font-size: 1.778rem;
   }
 `;
 
+const MapDiv = styled.div`
+  height: (100vh - 300px);
+  background-color: pink;
+`;
+
 const Map = styled.div`
-  position: absolute;
-  top: 0px;
-  height: 100px;
+  height: 100%;
   width: 100px;
   background-color: yellow;
 `;
 
 function App() {
   return (
-    <Div>
-      <Container>
-        <Title>IP Address Tracker</Title>
-        <Search />
-      </Container>
+    <div>
+      <Header>
+        <Container>
+          <Title>IP Address Tracker</Title>
+          <Search />
+        </Container>
+      </Header>
+
+      <MapDiv></MapDiv>
 
       {/* <Map></Map> */}
-    </Div>
+    </div>
   );
 }
 
