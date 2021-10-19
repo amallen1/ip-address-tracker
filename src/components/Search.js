@@ -9,6 +9,12 @@ const Form = styled.form`
   margin: 0 auto 1.333em;
 `;
 
+const Error = styled.p`
+  color: lightblue;
+  text-align: center;
+  margin-bottom: 1.333rem;
+`;
+
 const Input = styled.input`
   padding: 1rem 1rem 1rem;
   font-size: inherit;
@@ -55,6 +61,7 @@ const Search = () => {
   const [ipAddress, setIPAddress] = useState("");
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(true);
+  const [isValid, setIsValid] = useState(true);
 
   const fetchData = async () => {
     const apiKey = "at_T0MSWNTC1YEN9Qr5akAp1Bj6L7n1M";
@@ -69,42 +76,41 @@ const Search = () => {
       .catch((error) => console.log(error));
   };
 
-  const validate = () => {
-    // /[0-9]{1-3}\.[0-9]{1-3}\.[0-9]{1-3}\.[0-9]{1-3}/
-    //71.201.134.49
 
-    //valid from 0 - 99
-    //[0-9][0-9]
+  const validateAddress = (ipAddress) => {
+    if (ipAddress.split(".").length === 4) {
+      const ipv4 = new RegExp(
+        "^((\\d|[1-9]\\d|1\\d\\d|2([0-4]\\d|5[0-5]))\\.){3}(\\d|[1-9]\\d|1\\d\\d|2([0-4]\\d|5[0-5]))+"
+      );
 
-    //valid from 100 - 199
-    //1[0-9][0-9]
+      if (ipv4.test(ipAddress)) {
+        console.log("Valid");
+        setIsValid(true);
+        fetchData();
+      } else {
+        console.log("Not valid ipv4 address");
+        setIsValid(false);
+      }
+    } else if (ipAddress.split(":").length === 8) {
+      const ipv6 = new RegExp("^(([a-fA-F0-9]{1,4}:){7}[a-fA-F0-9]{1,4}){1}$");
 
-    //valid for 200-249
-    //2[0-4][0-9]
-
-    //valid for 250 to 255
-    //25[0-5]
-
-    //final pattern
-    //([0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]?)\.
-
-    let ip = "0.0.0.0";
-    let regularExp = new RegExp(
-      "([0-9]|[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]?)\.([0-9]|[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]?)\.([0-9]|[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]?)\.([0-9]|[0-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5]?)"
-    );
-    if (regularExp.test(ip)) {
-      console.log("Valid");
+      if (ipv6.test(ipAddress)) {
+        console.log("Valid");
+        setIsValid(true);
+        fetchData();
+      } else {
+        console.log("Not valid ipv6 address");
+        setIsValid(false);
+      }
     } else {
-      console.log("Invalid");
+      console.log("Not valid ipv4 or ipv6 address");
+      setIsValid(false);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    validate();
-
-    //validate IP address before fetching the data
-    //fetchData();
+    validateAddress(ipAddress);
   };
 
   return (
@@ -117,9 +123,12 @@ const Search = () => {
           placeholder="Search for any IP address or domain"
         />
         <SearchButton>
-          <img src="./images/icon-arrow.svg" alt="Right Icon" />
+          <img src="./images/icon-arrow.svg" alt="Right Arrow Icon" />
         </SearchButton>
       </Form>
+      {isValid ? null : (
+        <Error>Please enter a valid IPv4 or IPv6 address.</Error>
+      )}
 
       <Data dataObj={data} loading={isLoading} />
     </div>

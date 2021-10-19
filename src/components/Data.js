@@ -94,11 +94,6 @@ const Result = styled.h3`
 `;
 
 const Data = ({ dataObj, loading }) => {
-  console.log("checking for data");
-  console.log(dataObj);
-  console.log("checking for loading status");
-  console.log(loading);
-
   return (
     <div>
       <Card>
