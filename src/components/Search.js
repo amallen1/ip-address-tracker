@@ -130,7 +130,7 @@ const Search = () => {
         <Error>Please enter a valid IPv4 or IPv6 address.</Error>
       )}
 
-      <Data dataObj={data} loading={isLoading} />
+      {/* <Data dataObj={data} loading={isLoading} /> */}
     </div>
   );
 };
