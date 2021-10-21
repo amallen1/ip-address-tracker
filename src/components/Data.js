@@ -9,8 +9,6 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 0px 50px 50px -25px rgba(0, 0, 0, 0.0984);
-  position: relative;
-  z-index: 1;
 
   @media (min-width: 850px) {
     text-align: left;
@@ -94,6 +92,7 @@ const Result = styled.h3`
 `;
 
 const Data = ({ dataObj, loading }) => {
+  console.log(dataObj);
   return (
     <div>
       <Card>

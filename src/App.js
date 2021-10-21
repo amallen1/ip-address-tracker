@@ -1,23 +1,6 @@
 import styled from "styled-components";
 import Search from "./components/Search";
-// import Map from "./components/Map";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import L from "leaflet";
-import './App.css';
-
-delete L.Icon.Default.prototype._getIconUrl;
-
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
-  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
-});
-
-const Container = styled.div`
-  height: 100vh;
-  background-color: orange;
-`;
+import Map from "./components/Map";
 
 const Header = styled.div`
   height: 300px;
@@ -26,6 +9,7 @@ const Header = styled.div`
   background-position: right 43.5% top 0%;
   background-repeat: no-repeat;
   position: relative;
+  z-index: 10;
 `;
 
 const SearchSection = styled.div`
@@ -44,42 +28,17 @@ const Title = styled.h1`
   }
 `;
 
-const MapDiv = styled.div`
-  transform: translateY(200px);
-  height: 100%;
-  background-color: pink;
-`;
-
-const Box = styled.div`
-  height: 100vh;
-`;
 function App() {
   return (
     <div>
-      {/* <Header>
+      <Header>
         <SearchSection>
           <Title>IP Address Tracker</Title>
           <Search />
         </SearchSection>
-      </Header> */}
-      {/* <Map/> */}
-      <Box>
-        <MapContainer
-          center={[51.505, -0.09]}
-          zoom={13}
-          scrollWheelZoom={false}
-        >
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker position={[51.505, -0.09]}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-        </MapContainer>
-      </Box>
+      </Header>
+
+      <Map />
     </div>
   );
 }

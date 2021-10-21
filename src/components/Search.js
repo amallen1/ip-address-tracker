@@ -65,6 +65,7 @@ const Search = () => {
 
   const fetchData = async () => {
     const apiKey = "at_T0MSWNTC1YEN9Qr5akAp1Bj6L7n1M";
+    console.log("i am fetching");
     axios
       .get(
         `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}`
@@ -75,7 +76,6 @@ const Search = () => {
       })
       .catch((error) => console.log(error));
   };
-
 
   const validateAddress = (ipAddress) => {
     if (ipAddress.split(".").length === 4) {
@@ -130,7 +130,7 @@ const Search = () => {
         <Error>Please enter a valid IPv4 or IPv6 address.</Error>
       )}
 
-      {/* <Data dataObj={data} loading={isLoading} /> */}
+      <Data dataObj={data} loading={isLoading} />
     </div>
   );
 };

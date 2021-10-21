@@ -1,6 +1,5 @@
 import * as styled from "styled-components";
 
-//had to change so that prettier would format it
 export const GlobalStyles = styled.createGlobalStyle`
   :root {
     --very-dark-gray: hsl(0, 0%, 17%);
@@ -14,12 +13,12 @@ export const GlobalStyles = styled.createGlobalStyle`
     box-sizing: border-box;
   }
 
-  html,
-  body {
-    height: 100vh;
+  html {
+    height: 100%;
   }
 
   body {
     font-family: "Rubik", sans-serif;
+    min-height: 100%;
   }
 `;
