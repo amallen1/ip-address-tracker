@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Data from "./Data";
-import axios from "axios";
 
 const Form = styled.form`
   position: relative;
@@ -57,31 +55,12 @@ const SearchButton = styled.button`
   }
 `;
 
-const Search = () => {
-  const [ipAddress, setIPAddress] = useState("");
-  const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(true);
+const Search = ({ setIP, ip, fetchData }) => {
   const [isValid, setIsValid] = useState(true);
-
-  const fetchData = async () => {
-    const apiKey = "at_T0MSWNTC1YEN9Qr5akAp1Bj6L7n1M";
-    console.log("i am fetching");
-    axios
-      .get(
-        `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}`
-      )
-      .then((response) => {
-        setData(response.data);
-        setLoading(false);
-      })
-      .catch((error) => console.log(error));
-  };
 
   const validateAddress = (ipAddress) => {
     if (ipAddress.split(".").length === 4) {
-      const ipv4 = new RegExp(
-        "^((\\d|[1-9]\\d|1\\d\\d|2([0-4]\\d|5[0-5]))\\.){3}(\\d|[1-9]\\d|1\\d\\d|2([0-4]\\d|5[0-5]))+"
-      );
+      const ipv4 = new RegExp("^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)(\\.(?!$)|$)){4}$");
 
       if (ipv4.test(ipAddress)) {
         console.log("Valid");
@@ -110,16 +89,16 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    validateAddress(ipAddress);
+    validateAddress(ip);
   };
 
   return (
     <div>
       <Form onSubmit={handleSubmit}>
         <Input
-          type="type"
-          value={ipAddress}
-          onChange={(e) => setIPAddress(e.target.value)}
+          type="text"
+          value={ip}
+          onChange={(e) => setIP(e.target.value)}
           placeholder="Search for any IP address or domain"
         />
         <SearchButton>
@@ -129,8 +108,6 @@ const Search = () => {
       {isValid ? null : (
         <Error>Please enter a valid IPv4 or IPv6 address.</Error>
       )}
-
-      <Data dataObj={data} loading={isLoading} />
     </div>
   );
 };

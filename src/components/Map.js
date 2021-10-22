@@ -1,37 +1,60 @@
 import React from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  MapConsumer,
+} from "react-leaflet";
 import L from "leaflet";
 import styled from "styled-components";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
-delete L.Icon.Default.prototype._getIconUrl;
+//Need this to import marker icon
 
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
-  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+let DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
 });
 
+L.Marker.prototype.options.icon = DefaultIcon;
+
 const Container = styled.div`
-  height: 528px;
-  background-color: pink;
+  height: calc(100vh - 300px);
 `;
 
-const Map = () => {
+const Map = ({ data }) => {
+  const center = [data.location.lat, data.location.lng];
+
+  const changeLocation = (map) => {
+    map.flyTo(center);
+  };
+
   return (
     <Container>
       <MapContainer
-        center={[41.78586, -88.14729]}
+        center={center}
         zoom={13}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
         style={{ zIndex: "1", height: "100%" }}
       >
+        <MapConsumer>
+          {(map) => {
+            changeLocation(map);
+            return null;
+          }}
+        </MapConsumer>
+
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[41.78586, -88.14729]}>
+        <Marker position={center}>
           <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+            <h2>
+              {data.location.city}, {data.location.region}
+            </h2>
           </Popup>
         </Marker>
       </MapContainer>

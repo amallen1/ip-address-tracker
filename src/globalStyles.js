@@ -13,12 +13,7 @@ export const GlobalStyles = styled.createGlobalStyle`
     box-sizing: border-box;
   }
 
-  html {
-    height: 100%;
-  }
-
   body {
     font-family: "Rubik", sans-serif;
-    min-height: 100%;
   }
 `;

@@ -92,14 +92,13 @@ const Result = styled.h3`
 `;
 
 const Data = ({ dataObj, loading }) => {
-  console.log(dataObj);
   return (
     <div>
       <Card>
         <Info>
           <Label>ip address</Label>
           {loading ? (
-            <Result>192.212.174.101</Result>
+            <Result>Loading</Result>
           ) : (
             <Result>{dataObj.ip}</Result>
           )}
@@ -108,10 +107,10 @@ const Data = ({ dataObj, loading }) => {
         <Info>
           <Label>location</Label>
           {loading ? (
-            <Result>Brooklyn, NY 10001</Result>
+            <Result>Loading</Result>
           ) : (
             <Result>
-              {dataObj.location.city}, {dataObj.location.region},
+              {dataObj.location.city}, {dataObj.location.region}, {"  "}
               {dataObj.location.postalCode}
             </Result>
           )}
@@ -120,7 +119,7 @@ const Data = ({ dataObj, loading }) => {
         <Info>
           <Label>timezone</Label>
           {loading ? (
-            <Result>UTC -05:00</Result>
+            <Result>Loading</Result>
           ) : (
             <Result>UTC {dataObj.location.timezone}</Result>
           )}
@@ -129,7 +128,7 @@ const Data = ({ dataObj, loading }) => {
         <Info>
           <Label>isp</Label>
           {loading ? (
-            <Result hasWidth="true">SpaceX Starlink</Result>
+            <Result>Loading</Result>
           ) : (
             <Result hasWidth="true">{dataObj.isp}</Result>
           )}

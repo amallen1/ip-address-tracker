@@ -1,44 +1,57 @@
-import styled from "styled-components";
+import { useState, useEffect } from "react";
 import Search from "./components/Search";
 import Map from "./components/Map";
-
-const Header = styled.div`
-  height: 300px;
-  background-image: url("./images/pattern-bg.png");
-  background-size: cover;
-  background-position: right 43.5% top 0%;
-  background-repeat: no-repeat;
-  position: relative;
-  z-index: 10;
-`;
-
-const SearchSection = styled.div`
-  padding: 0 1.05rem;
-`;
-
-const Title = styled.h1`
-  color: #fff;
-  padding: 1.44rem 0;
-  font-weight: 500;
-  font-size: 1.44rem;
-  text-align: center;
-
-  @media (min-width: 750px) {
-    font-size: 1.778rem;
-  }
-`;
+import Data from "./components/Data";
+import axios from "axios";
+import { Header, SearchSection, Title } from "./AppStyles";
 
 function App() {
+  const [ipAddress, setIPAddress] = useState("");
+  const [data, setData] = useState(null);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!data) {
+      axios
+        .get("https://api.ipify.org?format=json")
+        .then((response) => {
+          console.log("initial page load");
+          setIPAddress(response.data.ip);
+          fetchData();
+          setIPAddress("");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, []);
+
+  const fetchData = async () => {
+    //FIXME: hide apikey
+    const apiKey = "at_T0MSWNTC1YEN9Qr5akAp1Bj6L7n1M";
+    console.log("i am fetching");
+    axios
+      .get(
+        `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}`
+      )
+      .then((response) => {
+        setData(response.data);
+        setLoading(false);
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div>
       <Header>
         <SearchSection>
           <Title>IP Address Tracker</Title>
-          <Search />
+          <Search setIP={setIPAddress} ip={ipAddress} fetchData={fetchData} />
+          <Data dataObj={data} loading={isLoading} />
         </SearchSection>
       </Header>
 
-      <Map />
+      {data ? <Map data={data} /> : null}
     </div>
   );
 }
