@@ -1,4 +1,4 @@
-# Frontend Mentor - IP address tracker # Frontend Mentor - IP address tracker solution
+# Frontend Mentor - IP address tracker solution
 
 ![Design preview for the IP address tracker coding challenge](./design/desktop-preview.jpg)
 
