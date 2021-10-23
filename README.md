@@ -15,10 +15,8 @@ This is a solution to the [IP address tracker challenge on Frontend Mentor](http
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -37,8 +35,6 @@ Users are able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
-
 | Mobile (375px)                                 | Desktop (1440px)                                 |
 | ---------------------------------------------- | ------------------------------------------------ |
 | ![Mobile](./screenshots/mobile_screenshot.png) | ![Desktop](./screenshots/desktop_screenshot.png) |
@@ -46,7 +42,7 @@ Users are able to:
 ### Links
 
 - Solution URL: [Code](https://github.com/amallen1/ip-address-tracker)
-- Live Site URL: [IP Address Tracker](https://your-live-site-url.com)
+- Live Site URL: [IP Address Tracker](https://ip-address-tracker-cfc531.netlify.app/)
 
 ## My process
 
