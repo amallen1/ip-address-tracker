@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import Search from "./components/Search";
-import Map from "./components/Map";
-import Data from "./components/Data";
+import Search from "./components/Search/Search";
+import Map from "./components/Map/Map";
+import Data from "./components/Data/Data";
 import axios from "axios";
 import { Header, SearchSection, Title } from "./AppStyles";
 
@@ -27,9 +27,7 @@ function App() {
   }, []);
 
   const fetchData = async () => {
-    //FIXME: hide apikey
-    const apiKey = "at_T0MSWNTC1YEN9Qr5akAp1Bj6L7n1M";
-    console.log("i am fetching");
+    const apiKey = process.env.REACT_APP_API_KEY;
     axios
       .get(
         `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}`
@@ -47,7 +45,7 @@ function App() {
         <SearchSection>
           <Title>IP Address Tracker</Title>
           <Search setIP={setIPAddress} ip={ipAddress} fetchData={fetchData} />
-          <Data dataObj={data} loading={isLoading} />
+          <Data data={data} loading={isLoading} />
         </SearchSection>
       </Header>
 

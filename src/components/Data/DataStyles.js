@@ -1,7 +1,6 @@
-import React from "react";
 import styled from "styled-components";
 
-const Card = styled.div`
+export const Card = styled.div`
   background-color: #fff;
   border-radius: 15px;
   padding: 1.44em 1.33em 0em;
@@ -9,21 +8,20 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 0px 50px 50px -25px rgba(0, 0, 0, 0.0984);
+  max-width: 1110px;
 
   @media (min-width: 850px) {
     text-align: left;
-    margin: 0 auto;
-
     padding: 2.05rem 1.777rem;
     flex-direction: row;
   }
 
   @media (min-width: 1024px) {
-    max-width: 1110px;
+    margin: 0 auto;
   }
 `;
 
-const Label = styled.label`
+export const Label = styled.label`
   color: var(--dark-gray);
   font-size: 0.555em;
   text-transform: uppercase;
@@ -40,7 +38,7 @@ const Label = styled.label`
   }
 `;
 
-const Info = styled.div`
+export const Info = styled.div`
   margin-bottom: 1.33rem;
   display: flex;
   flex-direction: column;
@@ -70,7 +68,7 @@ const Info = styled.div`
   }
 `;
 
-const Result = styled.h3`
+export const Result = styled.h3`
   font-weight: 500;
   color: var(--very-dark-gray);
   font-size: 1.11rem;
@@ -90,52 +88,3 @@ const Result = styled.h3`
   `}
   }
 `;
-
-const Data = ({ dataObj, loading }) => {
-  return (
-    <div>
-      <Card>
-        <Info>
-          <Label>ip address</Label>
-          {loading ? (
-            <Result>Loading</Result>
-          ) : (
-            <Result>{dataObj.ip}</Result>
-          )}
-        </Info>
-
-        <Info>
-          <Label>location</Label>
-          {loading ? (
-            <Result>Loading</Result>
-          ) : (
-            <Result>
-              {dataObj.location.city}, {dataObj.location.region}, {"  "}
-              {dataObj.location.postalCode}
-            </Result>
-          )}
-        </Info>
-
-        <Info>
-          <Label>timezone</Label>
-          {loading ? (
-            <Result>Loading</Result>
-          ) : (
-            <Result>UTC {dataObj.location.timezone}</Result>
-          )}
-        </Info>
-
-        <Info>
-          <Label>isp</Label>
-          {loading ? (
-            <Result>Loading</Result>
-          ) : (
-            <Result hasWidth="true">{dataObj.isp}</Result>
-          )}
-        </Info>
-      </Card>
-    </div>
-  );
-};
-
-export default Data;
