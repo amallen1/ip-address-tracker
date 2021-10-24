@@ -26,7 +26,7 @@ function App() {
   }, []);
 
   const fetchData = async () => {
-    const apiKey = process.env.REACT_APP_API_KEY;
+    const apiKey = "at_T0MSWNTC1YEN9Qr5akAp1Bj6L7n1M";
     axios
       .get(
         `https://geo.ipify.org/api/v2/country,city?apiKey=${apiKey}&ipAddress=${ipAddress}`
