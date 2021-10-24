@@ -15,7 +15,6 @@ function App() {
       axios
         .get("https://api.ipify.org?format=json")
         .then((response) => {
-          console.log("initial page load");
           setIPAddress(response.data.ip);
           fetchData();
           setIPAddress("");
