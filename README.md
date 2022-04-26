@@ -22,7 +22,7 @@ This is a solution to the [IP address tracker challenge on Frontend Mentor](http
 
 ## The challenge
 
-The challenge was to build out this IP Address Tracker app and get it looking as close to the design as possible. To get the IP Address locations, I used [IP Geolocation API by IPify](https://geo.ipify.org/). To generate the map, I used [LeafletJS](https://leafletjs.com/).
+The challenge was to build out this IP Address Tracker app and get it looking as close to the design as possible. To get the IP Address locations, I used [IP Geolocation API by IPify](https://geo.ipify.org/). To generate the map, I used [LeafletJS](https://leafletjs.com/). The application won't work if you have any adblocking software enabled on your browser.
 
 Users are able to:
 
@@ -60,7 +60,7 @@ Users are able to:
 
 ### What I learned
 
-I'm glad to have gained the experience of using open source libraries such as LeafletJS and React Leaflet to incorporate maps into this React app. Using LeafletJS and React Leaflet was challenging but a worthwhile learning experience. I also learned about the difference between IPv4 and IPv6 address how to use regular expressions to validate ip them.
+I'm glad to have gained the experience of using open source libraries such as LeafletJS and React Leaflet to incorporate maps into this React app. Using LeafletJS and React Leaflet was challenging but a worthwhile learning experience. I also learned about the difference between IPv4 and IPv6 address how to use regular expressions to validate them.
 
 ### Useful resources
 
